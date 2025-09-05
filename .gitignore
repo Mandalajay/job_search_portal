@@ -10,7 +10,7 @@ Thumbs.db
 Node.js Backend
 ========================
 Node.js dependencies
-/node_modules
+**/node_modules/
 /dist
 /build
 /coverage
