@@ -1,0 +1,56 @@
+========================
+General / OS-specific
+========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+========================
+Node.js Backend
+========================
+Node.js dependencies
+/node_modules
+/dist
+/build
+/coverage
+
+Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.staging
+
+Log and debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.eslintcache
+.prettierrc.js
+.prettierignore
+
+Compiled files for TypeScript
+*.js.map
+*.d.ts
+
+========================
+Vite.js Frontend
+========================
+Vite's build output directory
+/dist
+
+Dependencies for the frontend
+/frontend/node_modules
+
+Vite-specific cache and configuration files
+.vite/
+vite.config.js.timestamp-*
+
+Log and debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
