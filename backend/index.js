@@ -1,3 +1,4 @@
+// index.js
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -8,33 +9,35 @@ import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 
-dotenv.config({});
+dotenv.config();
 
 const app = express();
 
-// middleware
+// connect DB once (serverless-friendly if your connectDB caches)
+await connectDB();
+
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 const corsOptions = {
-    origin:['http://localhost:5173', 'https://jobsearchfrontend.vercel.app'],
-    credentials:true
-}
-
+  origin: ["http://localhost:5173", "https://jobsearchfrontend.vercel.app"],
+  credentials: true,
+};
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
-const PORT = process.env.PORT || 8000;
+app.use((req, _res, next) => {
+  console.log("REQ PATH:", req.path);
+  next();
+});
 
-
-// api's
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
 
+app.get("/api/v1/healthz", (req, res) => res.json({ ok: true }));
 
-app.listen(PORT,()=>{
-    connectDB();
-    console.log(`Server running at port ${PORT}`);
-})
+export default app;

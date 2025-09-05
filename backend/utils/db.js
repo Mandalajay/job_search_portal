@@ -1,14 +1,15 @@
+// utils/db.js
 import mongoose from "mongoose";
 
-const connectDB = async () => {
-    try {
-        await mongoose.connect(process.env.DB_CONN_STRING, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log('mongodb connected successfully');
-    } catch (error) {
-        console.log(error);
-    }
+let cached = global._mongoose;
+if (!cached) cached = global._mongoose = { conn: null, promise: null };
+
+export default async function connectDB() {
+  if (cached.conn) return cached.conn;
+  if (!cached.promise) {
+    const uri = process.env.DB_CONN_STRING;
+    cached.promise = mongoose.connect(uri).then((m) => m);
+  }
+  cached.conn = await cached.promise;
+  return cached.conn;
 }
-export default connectDB;
