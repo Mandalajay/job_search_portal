@@ -129,12 +129,12 @@ The frontend will be available at **http://localhost:5173** (or another port if 
 Create a `.env` file **inside the `backend/` folder** with the following keys:
 
 ```env
-PORT=5000
-MONGO_URI=<Your_MongoDB_Connection_String>
-SECRET_KEY=<Your_JWT_Secret_Key>
-CLOUDINARY_CLOUD_NAME=<Your_Cloudinary_Cloud_Name>
-CLOUDINARY_API_KEY=<Your_Cloudinary_API_Key>
-CLOUDINARY_API_SECRET=<Your_Cloudinary_API_Secret>
+DB_CONN_STRING=
+CLOUDINARY_HOST_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET= 
+SECRET_KEY=
+
 ```
 
 > ❗ Do **not** commit `.env` files to version control. Ensure `.gitignore` includes `.env`.
